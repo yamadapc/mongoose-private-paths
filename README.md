@@ -1,4 +1,4 @@
-# mongoose-private-paths [![Build Status](https://secure.travis-ci.org/yamadapc/mongoose-private-paths?branch=master)](http://travis-ci.org/yamadapc/mongoose-private-paths)
+# mongoose-private-paths [![Build Status](https://travis-ci.org/yamadapc/mongoose-private-paths.png?branch=master)](https://travis-ci.org/yamadapc/mongoose-private-paths)
 
 A simple mongoose plugin to provide private Schema keys
 

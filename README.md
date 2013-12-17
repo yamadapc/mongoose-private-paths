@@ -13,8 +13,9 @@ var TestSchema = new mongoose.Schema({
   public:       { type: String },
   _private:     { type: String },
   also_private: { type: String, private: true },
-  not_private:  { type: String, private: false }
-  _even:        { type: String, private: false }
+  not_private:  { type: String, private: false },
+  _even:        { type: String, private: false },
+  works_too:   [{ type: String, private: false }]
 });
 
 TestSchema.plugin(privatePaths);
@@ -27,6 +28,7 @@ var test = new Test({
   also_private: 'stuff with a "private" field set to true will be... private!',
   not_private:  'stuff with a "private" field set to false will be... NOT private!',
   _even:        'if they are prefixed with an "_"'
+  works_too:    'array-like fields should work too'
 });
 
 test.toJSON(); // =>

@@ -31,6 +31,7 @@ var test = new Test({
 
 test.toJSON(); // =>
 // {
+//   _id:          '1234',
 //   public:       'all keys are public by default!',
 //   _not_private: 'stuff with a "private" field set to false will be... NOT private!',
 //   _even:        'if they are prefixed with an "_"'

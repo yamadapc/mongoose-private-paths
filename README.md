@@ -14,6 +14,7 @@ var TestSchema = new mongoose.Schema({
   _private:     { type: String },
   also_private: { type: String, private: true },
   not_private:  { type: String, private: false }
+  _even:        { type: String, private: false }
 });
 
 TestSchema.plugin(privatePaths);

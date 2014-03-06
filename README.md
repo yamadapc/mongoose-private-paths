@@ -52,4 +52,4 @@ As of right now there're only two options available, to be passed when calling
 Just lint and test using [Grunt](http://gruntjs.com/).
 
 ## License
-Copyright (c) 2013 . Licensed under the MIT license.
+Copyright (c) 2014. Licensed under the MIT license.

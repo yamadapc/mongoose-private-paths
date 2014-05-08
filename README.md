@@ -46,7 +46,17 @@ As of right now there're only two options available, to be passed when calling
 `Schema.plugin(privatePaths, options)`:
 
 - **ignore** => an Array of keys to ignore (they'll all be public)
-- **prefix** => a different private key prefix (to be used instead of "_")
+- **prefix** => a different private key prefix (to be used instead of "\_")
+
+### `toJSON([options])`
+
+It should be noted that the `toJSON` method is overloaded with an optional
+`options` parameter, with the following keys:
+
+| Name     | Type                         | Description
+|----------|------------------------------|-------------------
+| `keep`   | `String` or `Array.<String>` | Either an array of keys or a single key to ignore (not omit) |
+| `remove` | `String` or `Array.<String>` | Either an array of keys or a single key to ignore (the default behaviour is overridden) |
 
 ## Contributing
 Just lint and test using [Grunt](http://gruntjs.com/).

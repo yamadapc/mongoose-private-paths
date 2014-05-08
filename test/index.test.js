@@ -74,6 +74,36 @@ describe('mongoose-private-paths', function() {
           json.should.not.have.property(k);
         });
       });
+
+      it('ignores keys passed as the keep option', function() {
+        var obj;
+        // when an array of keys is passed.
+        obj = test.toJSON({ keep: ['weird', 'mega_uber_weird'] });
+        obj.should.have.property('weird');
+        obj.should.have.property('mega_uber_weird');
+        obj.should.not.have.property('_private');
+
+        // when a single key is passed
+        obj = test.toJSON({ keep: 'weird' });
+        obj.should.have.property('weird');
+        obj.should.not.have.property('mega_uber_weird');
+        obj.should.not.have.property('_private');
+      });
+
+      it('only removes keys passed as the `remove` option', function() {
+        var obj;
+        // when an array of keys is passed.
+        obj = test.toJSON({ remove: ['weird', 'mega_uber_weird'] });
+        obj.should.not.have.property('weird');
+        obj.should.not.have.property('mega_uber_weird');
+        obj.should.have.property('_private');
+
+        // when a single key is passed
+        obj = test.toJSON({ remove: 'weird' });
+        obj.should.not.have.property('weird');
+        obj.should.have.property('mega_uber_weird');
+        obj.should.have.property('_private');
+      });
     });
 
     describe('toObject', function() {

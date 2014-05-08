@@ -53,10 +53,9 @@ As of right now there're only two options available, to be passed when calling
 It should be noted that the `toJSON` method is overloaded with an optional
 `options` parameter, with the following keys:
 
-| Name     | Type                         | Description
-|----------|------------------------------|-------------------
-| `keep`   | `String` or `Array.<String>` | Either an array of keys or a single key to ignore (not omit) |
-| `remove` | `String` or `Array.<String>` | Either an array of keys or a single key to ignore (the default behaviour is overridden) |
+- **keep**   => Either an array of keys or a single key to ignore (not omit)
+- **remove** => Either an array of keys or a single key to remove (the default
+  behaviour is overridden, to _only_ remove the specified keys)
 
 ## Contributing
 Just lint and test using [Grunt](http://gruntjs.com/).

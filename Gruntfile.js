@@ -4,6 +4,11 @@ module.exports = function (grunt) {
   // Show elapsed time at the end
   require('time-grunt')(grunt);
 
+  require('blanket')({
+    data_cover_never: ['oss'],
+    pattern: 'lib'
+  });
+
   // Project configuration.
   grunt.initConfig({
     jshint: {
@@ -17,7 +22,7 @@ module.exports = function (grunt) {
       options: {
         ignoreLeaks: false,
         ui: 'bdd',
-        reporter: 'spec'
+        reporter: 'mocha-spec-cov-alt'
       },
       all: '<%= jshint.test %>'
     },

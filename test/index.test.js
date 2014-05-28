@@ -23,7 +23,15 @@ describe('mongoose-private-paths', function() {
         _private:         { type: String },
         weird:            { type: String, private: true },
         _uber_weird:      { type: String, private: false },
-        mega_uber_weird: [{ type: String, private: true, default: [] }]
+        mega_uber_weird: [{ type: String, private: true, default: [] }],
+        nested: [new mongoose.Schema({
+          public: { type: String },
+          passwd: { type: String, private: true }
+        }, { _id: false, versionKey: false })],
+        nested_obj: {
+          public: { type: String },
+          passwd: { type: String, private: true }
+        }
       });
 
       TestSchema.plugin(privatePaths);
@@ -33,7 +41,16 @@ describe('mongoose-private-paths', function() {
         public:      'Name',
         _private:    'password',
         weird:       '.jshintrc',
-        _uber_weird: '.tmux.conf'
+        _uber_weird: '.tmux.conf',
+        mega_uber_weird: ['hello', 'world'],
+        nested: [{
+          public: 'Nested Name',
+          passwd: 'Nested password'
+        }],
+        nested_obj: {
+          public: 'NestedObj Name',
+          passwd: 'NestedObj password'
+        }
       });
     });
 
@@ -60,6 +77,18 @@ describe('mongoose-private-paths', function() {
       it('omits the keys with the private field set to true', function() {
         obj.should.not.have.property('weird');
         obj.should.not.have.property('mega_uber_weird');
+      });
+
+      it('omits nested private keys', function() {
+        obj.should.have.property('nested');
+        obj.nested[0].should.eql({
+          public: 'Nested Name'
+        });
+
+        obj.should.have.property('nested_obj');
+        obj.nested_obj.should.eql({
+          public: 'NestedObj Name'
+        });
       });
 
       it('gets implicitly called when strigifying', function() {

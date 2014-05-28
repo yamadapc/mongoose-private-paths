@@ -1,6 +1,6 @@
 {
   "name": "mongoose-private-paths",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "lib/index.js",
   "description": "A simple mongoose plugin to provide private Schema paths",
   "homepage": "https://github.com/yamadapc/mongoose-private-paths",

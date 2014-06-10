@@ -50,7 +50,7 @@ describe('mongoose-private-paths', function() {
         nested_obj: {
           public: 'NestedObj Name',
           passwd: 'NestedObj password'
-        }
+        },
       });
     });
 
@@ -89,6 +89,19 @@ describe('mongoose-private-paths', function() {
         obj.nested_obj.should.eql({
           public: 'NestedObj Name'
         });
+      });
+
+      it('fully omits empty object nodes', function() {
+        var obj = new Test({
+          nested: [
+            { passwd: 'something' }
+          ],
+          nested_obj: {
+            passwd: 'something'
+          }
+        });
+        var js = obj.toJSON();
+        js.should.not.have.property('nested_obj');
       });
 
       it('gets implicitly called when strigifying', function() {

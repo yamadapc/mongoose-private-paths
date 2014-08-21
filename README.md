@@ -53,7 +53,7 @@ As of right now there're only two options available, to be passed when calling
 - **ignore** => an Array of keys to ignore (they'll all be public)
 - **prefix** => a different private key prefix (to be used instead of "\_")
 
-### `toJSON([options])`
+### `document.toJSON([options])`
 
 It should be noted that the `toJSON` method is overloaded with an optional
 `options` parameter, with the following keys:
@@ -61,6 +61,16 @@ It should be noted that the `toJSON` method is overloaded with an optional
 - **keep**   => Either an array of keys or a single key to ignore (not omit)
 - **remove** => Either an array of keys or a single key to remove (the default
   behaviour is overridden, to _only_ remove the specified keys)
+
+### `Model.omitPrivatePaths(doc, [options])`
+
+This is a static function which holds the actual logic for the overloaded
+`.toJSON` on documents. It's exported to support serializing
+[`lean`](http://mongoosejs.com/docs/api.html#query_Query-lean) mongoose objects,
+avoiding the mongoose overhead for lists and things like that. It takes a
+document or lean object as its first argument and the options node as its
+second. Supporting a simple mongodb `select` query which does this for you with
+the most efficiency is still a TODO.
 
 ## License
 Copyright (c) 2014. Licensed under the MIT license.

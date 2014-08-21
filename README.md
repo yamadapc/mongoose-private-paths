@@ -62,8 +62,5 @@ It should be noted that the `toJSON` method is overloaded with an optional
 - **remove** => Either an array of keys or a single key to remove (the default
   behaviour is overridden, to _only_ remove the specified keys)
 
-## Contributing
-Just lint and test using [Grunt](http://gruntjs.com/).
-
 ## License
 Copyright (c) 2014. Licensed under the MIT license.

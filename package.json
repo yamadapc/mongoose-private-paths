@@ -14,38 +14,36 @@
     "type": "git",
     "url": "https://github.com/yamadapc/mongoose-private-paths"
   },
-  "licenses": [{ "type": "MIT" }],
-
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ],
   "scripts": {
-    "test": "grunt --verbose"
+    "test": "npm run jshint && npm run mocha",
+    "jshint": "jshint lib/*.js test/*.js",
+    "mocha": "mocha --require blanket -R mocha-spec-cov-alt"
   },
-
   "dependencies": {
     "lodash": "2.*"
   },
-
   "peerDependencies": {
     "mongoose": "*"
   },
-
   "devDependencies": {
     "blanket": "1.1.6",
-    "mongoose": "3.8.*",
-
-    "grunt": "0.4.*",
-    "grunt-contrib-jshint": "~0.7.0",
-    "grunt-simple-mocha": "latest",
-    "grunt-contrib-watch": "~0.5.0",
-    "time-grunt": "~0.2.0",
-    "mocha-spec-cov-alt": "~0.1.0",
     "coveralls": "^2.10.0",
-
+    "jshint": "^2.5.4",
+    "mocha": "^1.21.4",
+    "mocha-spec-cov-alt": "~0.1.0",
+    "mongoose": "3.8.*",
     "should": "latest"
   },
-
   "config": {
     "blanket": {
-      "data-cover-never": ["node_modules"],
+      "data-cover-never": [
+        "node_modules"
+      ],
       "pattern": "lib",
       "spec-cov": {
         "threshold": 80,

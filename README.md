@@ -3,6 +3,7 @@ mongoose-private-paths
 [![Build Status](https://travis-ci.org/yamadapc/mongoose-private-paths.png?branch=master)](https://travis-ci.org/yamadapc/mongoose-private-paths)
 [![Code Climate](https://codeclimate.com/github/yamadapc/mongoose-private-paths.png)](https://codeclimate.com/github/yamadapc/mongoose-private-paths)
 [![Coverage Status](https://coveralls.io/repos/yamadapc/mongoose-private-paths/badge.png)](https://coveralls.io/r/yamadapc/mongoose-private-paths)
+[![Analytics](https://ga-beacon.appspot.com/UA-54450544-1/mongoose-private-paths/README)](https://github.com/igrigorik/ga-beacon)
 - - -
 
 A simple mongoose plugin to provide private Schema keys

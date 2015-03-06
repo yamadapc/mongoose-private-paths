@@ -6,6 +6,7 @@
 var privatePaths = require('..');
 
 var _        = require('lodash'),
+    makeStub = require('mocha-make-stub'),
     mongoose = require('mongoose'),
     should   = require('should');
 
@@ -15,7 +16,7 @@ var _        = require('lodash'),
 
 describe('mongoose-private-paths', function() {
   describe('without passing any options', function() {
-    var Test, test, obj;
+    var Test, test, obj, NestedModel, nested_test;
 
     before(function() {
       var TestSchema = new mongoose.Schema({
@@ -31,12 +32,27 @@ describe('mongoose-private-paths', function() {
         nested_obj: {
           public: { type: String },
           passwd: { type: String, private: true }
-        }
+        },
+        reference_obj: { type: mongoose.Schema.ObjectId, ref: 'NestedModel' }
       });
 
       TestSchema.plugin(privatePaths);
+      Test = mongoose.model('Test', TestSchema);
 
-      Test = mongoose.model('NoOpTest', TestSchema);
+      var NestedModelSchema = new mongoose.Schema({
+        _private: { type: String },
+        public: { type: String },
+      });
+
+      NestedModelSchema.plugin(privatePaths);
+      NestedModel = this.NestedModel =
+        mongoose.model('NestedModel', NestedModelSchema);
+
+      nested_test = new NestedModel({
+        public: 'Name',
+        _private: 'password',
+      });
+
       test = new Test({
         public:      'Name',
         _private:    'password',
@@ -51,6 +67,7 @@ describe('mongoose-private-paths', function() {
           public: 'NestedObj Name',
           passwd: 'NestedObj password'
         },
+        reference_obj: nested_test._id,
       });
     });
 
@@ -145,6 +162,23 @@ describe('mongoose-private-paths', function() {
         obj.should.not.have.property('weird');
         obj.should.have.property('mega_uber_weird');
         obj.should.have.property('_private');
+      });
+
+      describe('when populating nested documents', function() {
+        makeStub('NestedModel', 'find', function(query, s, o, cb) {
+          cb(null, [nested_test]);
+        });
+
+        it('omits the nested model\'s private paths', function(done) {
+          test.populate('reference_obj', function(err, test) {
+            if(err) return done(err);
+            var json = test.toJSON();
+            json.should.have.property('reference_obj');
+            json.reference_obj.should.not.have.property('_private');
+            json.reference_obj.should.have.property('public');
+            done();
+          });
+        });
       });
     });
 

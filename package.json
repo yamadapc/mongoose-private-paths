@@ -34,8 +34,8 @@
     "blanket": "1.1.6",
     "coveralls": "^2.10.0",
     "jshint": "^2.5.4",
-    "mocha": "^1.21.4",
-    "mocha-spec-cov-alt": "~0.1.0",
+    "mocha": "^2.1.0",
+    "mocha-spec-cov-alt": "^0.2.3",
     "mongoose": "3.8.*",
     "should": "latest"
   },

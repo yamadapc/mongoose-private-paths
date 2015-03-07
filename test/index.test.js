@@ -77,6 +77,21 @@ describe('mongoose-private-paths', function() {
       should.exist(obj);
     });
 
+    describe('findPrivate(query)', function() {
+      it('makes an optimized query only `selecting` public paths', function() {
+        var query = Test.findPrivate({ something: 'here' });
+        should.exist(query);
+        query.should.be.instanceof(mongoose.Query);
+        query._fields.should.eql({
+          _private: 0,
+          weird: 0,
+          mega_uber_weird: 0,
+          'nested.passwd': 0,
+          'nested_obj.passwd': 0,
+        });
+      });
+    });
+
     describe('toJSON', function() {
       it('doesn\'t omit public keys nor the "_id"', function() {
         obj.should.have.property('public');

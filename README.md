@@ -73,8 +73,11 @@ This is a static function which holds the actual logic for the overloaded
 [`lean`](http://mongoosejs.com/docs/api.html#query_Query-lean) mongoose objects,
 avoiding the mongoose overhead for lists and things like that. It takes a
 document or lean object as its first argument and the options node as its
-second. Supporting a simple mongodb `select` query which does this for you with
-the most efficiency is still a TODO.
+second.
+
+### `Model.findPrivate(query)`
+
+This returns a `Query` only selecting public fields.
 
 ## License
 Copyright (c) 2014. Licensed under the MIT license.

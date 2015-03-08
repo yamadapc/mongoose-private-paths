@@ -33,7 +33,8 @@ describe('mongoose-private-paths', function() {
           public: { type: String },
           passwd: { type: String, private: true }
         },
-        reference_obj: { type: mongoose.Schema.ObjectId, ref: 'NestedModel' }
+        reference_obj: { type: mongoose.Schema.ObjectId, ref: 'NestedModel' },
+        reference_array: [{ type: mongoose.Schema.ObjectId, ref: 'NestedModel' }]
       });
 
       TestSchema.plugin(privatePaths);
@@ -68,6 +69,7 @@ describe('mongoose-private-paths', function() {
           passwd: 'NestedObj password'
         },
         reference_obj: nested_test._id,
+        reference_array: [ nested_test._id ]
       });
     });
 
@@ -185,12 +187,18 @@ describe('mongoose-private-paths', function() {
         });
 
         it('omits the nested model\'s private paths', function(done) {
-          test.populate('reference_obj', function(err, test) {
+          test.populate(['reference_obj', 'reference_array'], function(err, test) {
             if(err) return done(err);
             var json = test.toJSON();
+
             json.should.have.property('reference_obj');
             json.reference_obj.should.not.have.property('_private');
             json.reference_obj.should.have.property('public');
+
+            json.should.have.property('reference_array');
+            json.reference_array[0].should.not.have.property('_private');
+            json.reference_array[0].should.have.property('public');
+
             done();
           });
         });

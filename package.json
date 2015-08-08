@@ -31,7 +31,7 @@
     "mongoose": "*"
   },
   "devDependencies": {
-    "blanket": "1.1.6",
+    "blanket": "^1.1.7",
     "coveralls": "^2.10.0",
     "jshint": "^2.5.4",
     "mocha": "^2.2.5",

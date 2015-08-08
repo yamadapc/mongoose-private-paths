@@ -73,6 +73,23 @@ describe('mongoose-private-paths', function() {
       });
     });
 
+    it('works with raw type field descriptors', function() {
+      var TestRawSchema = new mongoose.Schema({
+        public:           String,
+        _private:         String,
+      });
+
+      TestRawSchema.plugin(privatePaths);
+      var TestRaw = mongoose.model('TestRaw', TestRawSchema);
+      var obj = new TestRaw({
+        public: 'here',
+        _private: 'here',
+      }).toJSON();
+      should.exist(obj);
+      obj.should.have.property('public');
+      obj.should.not.have.property('_private');
+    });
+
     it('preserves the Model\'s toJSON method', function() {
       should.exist(test.toJSON); test.toJSON.should.be.instanceof(Function);
       obj = test.toJSON();

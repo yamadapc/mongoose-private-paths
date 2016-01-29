@@ -25,7 +25,7 @@
     "mocha": "mocha --require blanket -R mocha-spec-cov-alt"
   },
   "dependencies": {
-    "lodash": "^3.4.0"
+    "lodash": "^4.1.0"
   },
   "peerDependencies": {
     "mongoose": "*"

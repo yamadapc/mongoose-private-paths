@@ -28,7 +28,7 @@
     "lodash": "^3.4.0"
   },
   "peerDependencies": {
-    "mongoose": "*"
+    "mongoose": "4.4.3"
   },
   "devDependencies": {
     "blanket": "^1.1.7",

@@ -22,7 +22,8 @@
   "scripts": {
     "test": "npm run jshint && npm run mocha",
     "jshint": "jshint lib/*.js test/*.js",
-    "mocha": "mocha --require blanket -R mocha-spec-cov-alt"
+    "mocha": "mocha --require blanket -R mocha-spec-cov-alt",
+    "test-html-cov": "mocha --require blanket -R html-cov > coverage.html"
   },
   "dependencies": {
     "lodash": "^3.4.0"
@@ -31,12 +32,12 @@
     "mongoose": "*"
   },
   "devDependencies": {
-    "blanket": "^1.1.7",
+    "blanket": "1.1.7",
     "coveralls": "^2.10.0",
     "jshint": "^2.5.4",
-    "mocha": "^2.2.5",
+    "mocha": "^2.4.5",
     "mocha-make-stub": "^2.1.0",
-    "mocha-spec-cov-alt": "^0.3.0",
+    "mocha-spec-cov-alt": "^1.1.1",
     "mongoose": "3.8.*",
     "should": "latest"
   },

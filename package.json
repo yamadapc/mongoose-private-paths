@@ -38,7 +38,7 @@
     "mocha": "^2.4.5",
     "mocha-make-stub": "^2.1.0",
     "mocha-spec-cov-alt": "^1.1.1",
-    "mongoose": "^4.4.3",
+    "mongoose": "^4.4.9",
     "should": "latest"
   },
   "config": {

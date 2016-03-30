@@ -29,6 +29,10 @@ describe('mongoose-private-paths', function() {
           public: { type: String },
           passwd: { type: String, private: true }
         }, { _id: false, versionKey: false })],
+        nested_single: new mongoose.Schema({
+          public: { type: String },
+          passwd: { type: String, private: true }
+        }, { _id: false, versionKey: false }),
         nested_obj: {
           public: { type: String },
           passwd: { type: String, private: true }
@@ -64,6 +68,10 @@ describe('mongoose-private-paths', function() {
           public: 'Nested Name',
           passwd: 'Nested password'
         }],
+        nested_single: {
+            public: 'NestedSingle Name',
+            passwd: 'NestedSingle password'
+        },
         nested_obj: {
           public: 'NestedObj Name',
           passwd: 'NestedObj password'
@@ -107,6 +115,7 @@ describe('mongoose-private-paths', function() {
           mega_uber_weird: 0,
           'nested.passwd': 0,
           'nested_obj.passwd': 0,
+          'nested_single.passwd': 0
         });
       });
     });
@@ -139,6 +148,11 @@ describe('mongoose-private-paths', function() {
         obj.should.have.property('nested_obj');
         obj.nested_obj.should.eql({
           public: 'NestedObj Name'
+        });
+
+        obj.should.have.property('nested_single');
+        obj.nested_single.should.eql({
+          public: 'NestedSingle Name'
         });
       });
 
